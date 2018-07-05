@@ -19,12 +19,13 @@ class App extends Component {
   
   deleteCharHandler = (charIndex) => {
     let chars = [...this.state.inputText];
-    const temp = [...chars.slice(0,charIndex),...chars.slice(charIndex+1)]
-    console.log(temp)
+    // const temp = [...chars.slice(0,charIndex),...chars.slice(charIndex+1)]
+    chars.splice(charIndex,1)
+    console.log(chars)
     // const newChars = ;
     // console.log(newChars)
     this.setState({
-      inputText: temp.join("")
+      inputText: chars.join("")
     })
   }
   
