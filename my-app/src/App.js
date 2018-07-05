@@ -4,27 +4,39 @@ import CharComponent from './components/CharComponent';
 
 class App extends Component {
   state = {
-    input: "",
+    inputText: "",
     inLength: 0
   }
   
   changeInputHandler = (event) => {
     // debugger
     this.setState({
-      input: event.target.value,
+      inputText: event.target.value,
       inLength: event.target.value.length
     })
-    // debugger
+    console.log(this.state.inputText.split(""))
   }
   
   
   render() {
+    
+    let chars = null;
+    if (this.state.inLength>0) {
+      chars = (
+        <div>
+          {this.state.inputText.split("").map( ele => {
+            return <CharComponent displayChar={ele}/>
+          })}
+        </div>
+      )
+    }
+    
     return (
       <div className="App">
         <input onChange={this.changeInputHandler} />
         <p>{this.state.inLength}</p>
         <ValidationComponent inLength={this.state.inLength}/>
-        <CharComponent />
+        {chars}
       </div>
     );
   }
@@ -33,7 +45,3 @@ class App extends Component {
 export default App;
 
 
-        // <UserInput 
-        //   change={this.changeInputHandler}
-        //   inLength={this.state.inLength}
-        // />
