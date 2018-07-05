@@ -20,7 +20,7 @@ class CharComponent extends Component {
         // }
         return (
             <div className="char" style={style}>
-                <p>{this.props.displayChar}</p>
+                <p onClick = {this.props.click}>{this.props.displayChar}</p>
             </div>
         );
     }

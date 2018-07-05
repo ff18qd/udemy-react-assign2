@@ -14,9 +14,19 @@ class App extends Component {
       inputText: event.target.value,
       inLength: event.target.value.length
     })
-    console.log(this.state.inputText.split(""))
+    // console.log(this.state.inputText.split(""))
   }
   
+  deleteCharHandler = (charIndex) => {
+    let chars = [...this.state.inputText];
+    const temp = [...chars.slice(0,charIndex),...chars.slice(charIndex+1)]
+    console.log(temp)
+    // const newChars = ;
+    // console.log(newChars)
+    this.setState({
+      inputText: temp.join("")
+    })
+  }
   
   render() {
     
@@ -24,8 +34,12 @@ class App extends Component {
     if (this.state.inLength>0) {
       chars = (
         <div>
-          {this.state.inputText.split("").map( ele => {
-            return <CharComponent displayChar={ele}/>
+          {this.state.inputText.split("").map( (ele,index) => {
+            return <CharComponent 
+              displayChar={ele}
+              click = {()=>this.deleteCharHandler(index)}
+              key = {index}
+              />
           })}
         </div>
       )
